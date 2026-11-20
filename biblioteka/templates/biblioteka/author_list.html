@@ -1,21 +1,30 @@
 {% extends "biblioteka/base.html" %}
 
-
 {% block title %}
     Autorzy — Biblioteka
 {% endblock %}
 
-
 {% block content %}
 
-    <section>
-        <h2>Autorzy</h2>
+<section>
+    <h2>Autorzy</h2>
 
-        <ul>
-            <li>Stanisław Lem</li>
-            <li>Bolesław Prus</li>
-            <li>J.R.R. Tolkien</li>
-        </ul>
-    </section>
+    <ul>
+        {% for author in authors %}
+            <li>
+                {{ author }}
+
+                <a
+                    class="button-link"
+                    href="{% url 'author_detail' author.id %}"
+                >
+                    Szczegóły
+                </a>
+            </li>
+        {% empty %}
+            <li>Brak autorów w bazie danych.</li>
+        {% endfor %}
+    </ul>
+</section>
 
 {% endblock %}
